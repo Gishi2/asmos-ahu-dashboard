@@ -1,3 +1,4 @@
+import { CalibrationOverlay } from "@/components/dashboard/CalibrationOverlay";
 import { Activity, Fan, Gauge, Radio, RotateCcw, Volume2, Wifi } from "lucide-react";
 import { useAhuData } from "@/hooks/useAhuData";
 import { StatusBanner } from "@/components/dashboard/StatusBanner";
@@ -8,14 +9,15 @@ import { TrendChart } from "@/components/dashboard/TrendChart";
 import { AlertsTable } from "@/components/dashboard/AlertsTable";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Separator } from "@/components/ui/separator";
+  import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+  import { Separator } from "@/components/ui/separator";
 
 function formatUptime(ms = 0) { const total=Math.floor(Number(ms)/1000); const h=Math.floor(total/3600); const m=Math.floor((total%3600)/60); return `${h}h ${m}m`; }
 
 export default function App() {
   const { current, history, alerts, loading, error, source, isOffline } = useAhuData();
   return <div className="min-h-screen bg-background text-foreground">
+    <CalibrationOverlay current={current} />
     <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,.09),transparent_28%),radial-gradient(circle_at_bottom_left,rgba(139,92,246,.08),transparent_32%)]" />
     <main className="relative mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
       <header className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

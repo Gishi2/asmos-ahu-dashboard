@@ -1,0 +1,4 @@
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
+const rows = [{ key: "healthy_probability", label: "Healthy", color: "bg-emerald-400" }, { key: "warning_probability", label: "Warning", color: "bg-amber-400" }, { key: "critical_probability", label: "Critical", color: "bg-red-400" }];
+export function ProbabilityCard({ current }) { return <Card className="border-white/10 bg-card/70"><CardHeader><CardTitle>AI confidence</CardTitle><CardDescription>Latest TinyML classification probabilities</CardDescription></CardHeader><CardContent className="space-y-5">{rows.map(({key,label,color}) => { const value=Number(current?.[key] ?? 0); return <div key={key}><div className="mb-2 flex justify-between text-sm"><span>{label}</span><span className="font-medium">{value.toFixed(1)}%</span></div><Progress value={value} indicatorClassName={color}/></div>; })}</CardContent></Card>; }
